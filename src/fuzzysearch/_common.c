@@ -70,7 +70,10 @@ search_exact_byteslike(PyObject *self, PyObject *args, PyObject *kwdict) {
 
     if (end_index == -1) end_index = seq_len;
     if (unlikely(end_index < 0)) {
-        PyErr_SetString(PyExc_ValueError, "end_index must be non-negative");
+        PyErr_Format(
+            PyExc_ValueError,
+            "end_index must be non-negative (end_index=%zd, seq_len=%zd)",
+            end_index, seq_len);
         return NULL;
     }
 
